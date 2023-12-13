@@ -26,11 +26,6 @@
 
 <body>
 
-<form>
-  <input type="text" name="search" placeholder="书籍搜索">
-  <input type="submit" value="查询">
-</form>
-
 <?php
 // 数据库连接
 $servername = "localhost";
@@ -51,40 +46,38 @@ $sql = "SELECT * FROM tb_mrbook";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    // 输出数据
+    echo "<form action='search_book.php' method='get'>";
+    echo "<input type='text' name='search' placeholder='书籍搜索'>";
+    echo "<input type='submit' value='查询'>";
+    echo "</form>";
+  // 输出数据
     echo "<table><tr><th>ID</th><th>书名</th><th>价格</th><th>出版日期</th><th>类别</th><th>操作</th></tr>";
     while($row = $result->fetch_assoc()) {
       echo "<tr><td>" . $row["id"]. "</td><td>" . $row["book_name"]. "</td><td>" . $row["book_price"]. "</td><td>" . $row["book_pdate"]. "</td><td>" . $row["book_type"]. "</td>";
-      echo "<td>
-      <button onclick='editBook(" . $row["id"] . ")'>修改</button>
-      <button onclick='Delete(" . $row["id"] . ")'>删除</button>
-      </td></tr>";
+      echo "<td>";
+      echo"<td> <a href=\"edit_book.php?id={$row["id"]}\" class='edit_book'>修改</a>";
+      echo"/";
+      echo"<a href=\"delete_book.php?id={$row["id"]}\" class='delete_book'>删除</a> </td>";
+      echo"</td></tr>";
     }
     echo "</table>";
+
+    //<!-- 编辑书籍 -->
+    echo"<form id='addBookForm' action='add_book.php' method='post'>";
+    echo"<input type='hidden' name='id' id='addBookId'>";
+    echo"书名: <input type='text' name='name' id='addBookName'>";
+    echo"价格: <input type='text' name='price' id='addBookPrice'>";
+    echo"出版时间: <input type='date' name='publish_date' id='addPublish'>";
+    echo"类别: <input type='text' name='type' id='addType'>";
+    echo"<input type='submit' value='提交'>"; 
+    echo"</form>";
+
 } else {
     echo "0 结果";
 }
+
 $conn->close();
 ?>
-
-<script>
-function editBook(id) {
-}
-
-function Delete(id) {
-}
-</script>
-
-<!-- 编辑书籍 -->
-<form id="editBookForm" action="edit_book.php" method="post">
-    <input type="hidden" name="id" id="editBookId">
-    书名: <input type="text" name="name" id="editBookName">
-    价格: <input type="text" name="price" id="editBookPrice">
-    出版时间: <input type="date" name="publish_date" id="editPublish">
-    类别: <input type="text" name="type" id="editType">
-    <input type="submit" value="提交">
-</form>
-
 
 </body>
 </html>
