@@ -27,7 +27,7 @@ if (!empty($search)) {
     if ($result->num_rows > 0) {
         // 输出结果
         while($row = $result->fetch_assoc()) {
-            echo "ID: " . $row["id"]. "<br>书名: " . $row["book_name"]. "<br>价格: " . $row["book_price"]. "<br>出版日期:" . $row["book_pdate"] . "<br>类别:" . $row["book_type"];
+            echo "ID: " . $row["id"]. "<br>书名: " . $row["book_name"]. "<br>价格: " . $row["book_price"]. "<br>出版日期:" . $row["book_pdate"] . "<br>类别:" . $row["book_type"] . "<br>";
         }
     } else {
         echo "没有找到相关书籍";
