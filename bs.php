@@ -2,22 +2,25 @@
 <html>
 
 <head>
-    <title>书籍列表</title>
-    <style>
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  table, th, td {
-    border: 1px solid black;
-  }
-  th, td {
-    padding: 8px;
-    text-align: left;
-  }
-  th {
-    background-color: #f2f2f2;
-  }
+  <title>书籍列表</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    #editBookForm {
+      margin: 0 auto;
+    }
 </style>
 </head>
 
@@ -79,8 +82,9 @@ function Delete(id) {
     价格: <input type="text" name="price" id="editBookPrice">
     出版时间: <input type="date" name="publish_date" id="editPublish">
     类别: <input type="text" name="type" id="editType">
-    <input type="submit" value="添加提交">
+    <input type="submit" value="提交">
 </form>
+
 
 </body>
 </html>
